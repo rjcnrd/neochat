@@ -4,6 +4,8 @@ const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3030/api',
 });
 
+//ad external API link here 
+
 const errHandler = err => {
   console.error(err);
   throw err;
@@ -11,20 +13,79 @@ const errHandler = err => {
 
 export default {
   service: service,
-  
-  getCountries() {
-    return service
-      .get('/countries')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
+ 
+//Conversations
 
-  postCountries(data) {
-    return service
-      .post('/countries', data)
-      .then(res => res.data)
-      .catch(errHandler);
-  },
+getConversations() {
+  return service
+    .get('/conversations')
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+getConversationbyId(conversationId) {
+  return service
+    .get('/conversations/'+conversationId)
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+editConversationbyId(conversationId) {
+  return service
+    .patch('/conversations/'+conversationId)
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+postConversations(data) {
+  return service
+    .post('/conversations', data)
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+deleteConversations(conversationId){
+  return service
+  .delete('/conversations/'+conversationId)
+  .then(res => res.data)
+  .catch(errHandler);
+},
+
+postMessages(conversationId){
+  return service
+    .post(`/conversations/${conversationId}/messages`)
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+getUsers() {
+  return service
+    .get('/users')
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+getFriends() {
+  return service
+    .get('/users/friends')
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+getUserbyId(id) {
+  return service
+    .get('/users/'+id)
+    .then(res => res.data)
+    .catch(errHandler);
+},
+
+editUserbyId(id,updates){
+  return service
+  .patch('/users/'+id,updates)
+  .then(res => res.data)
+  .catch(errHandler);
+},
+
   
   getSecret() {
     return service

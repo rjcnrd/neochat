@@ -7,17 +7,17 @@ const messageSchema = new Schema({
     required: [true, "Content is required"]
   },
 
-  isRead: { type: Boolean },
+  // isRead: { type: Boolean },
 
   _creator: {
     type: Schema.Types.ObjectId,
     ref: "User"
   },
 
-  _conversation: {
-    type: Schema.Types.ObjectId,
-    ref: "Conversation"
-  },
+  // _conversation: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Conversation"
+  // },
 },
   {
     timestamps: {

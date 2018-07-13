@@ -10,6 +10,14 @@ const conversationSchema = new Schema({
     },  
   ],
 
+  _messages :
+  [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Message'
+    },  
+  ],
+
   title: String,
   design: { type: String, enum: styles}
 

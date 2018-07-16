@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Friends from './Friends';
-import Conversations from "./Conversations";
+import api from "../api";
+
+// import Friends from './Friends';
+// import Conversations from "./Conversations";
 
 class Home extends Component {
   // constructor(props) {
@@ -12,9 +14,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <h2>Home</h2>
-        <p>This is a sample project with the MERN stack</p>
-      <Friends/>
-      <Conversations />
+        Willkommen {api.loadUser().name}
       </div>
     );
   }

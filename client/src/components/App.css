@@ -31,3 +31,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.Chat{
+  background: pink;
+}
+
+.right{
+  background:#ffffff70;
+  text-align: right;
+}
+
+
+.left{
+  background: #80808040;
+  text-align: left;
+}

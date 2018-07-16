@@ -30,28 +30,25 @@ class Friends extends Component {
       })
       .catch(err => console.log(err));
 
-    api.getUsers().then(users => {
-      console.log("users", users);
+    // api.getUsers().then(users => {
+    //   console.log("users", users);
 
-      this.setState({
-        users: users
-      });
-    });
+    //   this.setState({
+    //     users: users
+    //   });
+    // });
 
-    api
-      .getUserbyId("5b48b0bc7aedbdf4bbf40d4b")
-      .then(user => {
-        console.log("user", user);
-      })
+    // api
+    //   .getUserbyId("5b48b0bc7aedbdf4bbf40d4b")
+    //   .then(user => {
+    //     console.log("user", user);
+    //   })
 
-      .catch(err => console.log(err));
+    //   .catch(err => console.log(err));
   }
   render() {
     return (
       <div className="Users">
-        <h2>List of Users</h2>
-        {this.state.users.map((c, i) => <li key={i}>{c.name}</li>)}
-
     
         {this.state.friends.length > 0 &&  <h2>List of Friends</h2>}
         {this.state.friends.length > 0 && this.state.friends.map((c, i) => <li key={i}>{c.name}</li>)}

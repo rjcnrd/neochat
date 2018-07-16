@@ -37,6 +37,14 @@ editConversationbyId(conversationId,update) {
     .catch(errHandler);
 },
 
+getUserConversations(userId) {
+  return service
+  .get(`/conversations/participant/${userId}`)
+  .then(res => res.data)
+  .catch(errHandler);
+},
+
+
 addConversation(data) {
   return service
     .post('/conversations', data)

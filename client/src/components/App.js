@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
-import Countries from './Countries';
-import AddCountry from './AddCountry';
+import Chat from './Chat';
+// import {Button} from "reactstrap";
+
+
 import Secret from './Secret';
 import Login from './Login';
 import Signup from './Signup';
@@ -14,13 +16,75 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      countries: []
-    }
-    api.loadUser();
+      conversations: [],
+      friends:[],
+      users: []
+    };
   }
 
+  componentDidMount() {
+    
+    api
+    .getFriends()
+    .then(friends => {
+      console.log("friends", friends);
+      this.setState({
+        friends: friends
+      });
+    })
+    .catch(err => console.log(err));
+    
+    api
+    .getUsers().then(users => {
+      this.setState({
+        users: [],
+        conversations: []
+      });
+    })
+    
+  
+    let id =  api.loadUser().id
+    
+    // .then(user=>{
+    //   console.log("user",user)
+    // })
+
+    // api
+    // .loadUser()
+    // .then((user) => {
+    //   console.log("user", user);
+      api
+        .getUserConversations(id)
+        .then(conversations => {
+          console.log("conversations of this user", conversations);
+          this.setState({
+            conversations: conversations
+          });
+        })
+        .catch(err => console.log(err));
+  }
+  
+  
+  
   handleLogoutClick(e) {
     api.logout()
+  }
+
+  handleUpdateConversation(conversationId,text){
+    api.addMessage(conversationId,
+      {
+      text: text,
+      _creator: api.loadUser().id,
+    })
+    .then(()=>api.getUserConversations(api.loadUser().id))
+    .then(conversations => {
+      this.setState({
+        conversations: conversations
+      });
+    })
+    .catch(err => console.log(err));
+    console.log("message added to conversation, state updated")
+
   }
 
   render() {                
@@ -46,10 +110,14 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />
           <Route render={() => <h2>404</h2>} />
-        </Switch>        
+        </Switch>   
+        {/* display for each conversation a chat!  */}
+        
+        {this.state.conversations.map((c,i) => <Chat conversation={c} key={i} handleUpdateConversation={this.handleUpdateConversation.bind(this)}/>)}
+
+  
       </div>
     );
-  }
-}
+  }}
 
 export default App;

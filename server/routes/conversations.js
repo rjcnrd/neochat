@@ -21,12 +21,22 @@ router.get('/', (req, res, next) => {
 });
 
 //GET a single conversation
-router.get('/:conversationId', (req, res, next) => {
-  Conversation.findById(req.params.conversationId)
+router.get('/conversation/:id', (req, res, next) => {
+  Conversation.findById(req.params.id)
   .populate("_messages")
     .populate("_participants")
       .then(conversation=> {
         res.json(conversation)
+      })
+});
+
+//GET all conversations based on userID
+router.get('/participant/:id',(req, res, next) => {
+  Conversation.find({"_participants": `${req.params.id}`})
+  .populate("_messages")
+    .populate("_participants")
+      .then(conversations=> {
+        res.json(conversations)
       })
 });
 

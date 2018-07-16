@@ -2,6 +2,9 @@ var express = require('express');
 const Conversation = require("../models/Conversation");
 const mongoose = require("mongoose");
 const Message = require("../models/Message");
+const passport = require('passport');
+const { Strategy, ExtractJwt } = require("passport-jwt");
+const config = require("../configs/index");
 
 
 var router = express.Router();
@@ -9,6 +12,8 @@ var router = express.Router();
 // Route to get all conversations
 router.get('/', (req, res, next) => {
   Conversation.find()
+  .populate("_participants")
+  .populate("_messages")
     .then(conversations => {
       res.json(conversations)
     })
@@ -17,11 +22,12 @@ router.get('/', (req, res, next) => {
 
 //GET a single conversation
 router.get('/:conversationId', (req, res, next) => {
-  Conversation.find(req.params.conversationId)
+  Conversation.findById(req.params.conversationId)
   .populate("_messages")
-    .then(conversation=> {
-      res.json(conversation)
-    })
+    .populate("_participants")
+      .then(conversation=> {
+        res.json(conversation)
+      })
 });
 
 /* EDIT a Conversation. */

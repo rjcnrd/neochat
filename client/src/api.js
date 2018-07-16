@@ -30,14 +30,14 @@ getConversationbyId(conversationId) {
     .catch(errHandler);
 },
 
-editConversationbyId(conversationId) {
+editConversationbyId(conversationId,update) {
   return service
-    .patch('/conversations/'+conversationId)
+    .patch('/conversations/'+conversationId,update)
     .then(res => res.data)
     .catch(errHandler);
 },
 
-postConversations(data) {
+addConversation(data) {
   return service
     .post('/conversations', data)
     .then(res => res.data)
@@ -51,9 +51,9 @@ deleteConversations(conversationId){
   .catch(errHandler);
 },
 
-postMessages(conversationId){
+addMessage(conversationId,data){
   return service
-    .post(`/conversations/${conversationId}/messages`)
+    .post(`/conversations/${conversationId}/messages`,data)
     .then(res => res.data)
     .catch(errHandler);
 },
@@ -85,6 +85,15 @@ editUserbyId(id,updates){
   .then(res => res.data)
   .catch(errHandler);
 },
+
+addFriend(friendId){
+  console.log("Adding a friedn:",friendId)
+  return service
+  .post('/users/friends',{friendId})
+  .then(res => res.data)
+  .catch(errHandler);
+},
+
 
   
   getSecret() {

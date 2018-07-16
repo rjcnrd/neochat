@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const Conversation = require("../models/Conversation")
 const passport = require('passport');
 const config = require('../configs/index');
 
@@ -19,6 +20,7 @@ const parser = multer({ storage });
 // Route to get all users
 router.get('/', (req, res, next) => {
   User.find()
+  .populate("_friends")
     .then(users => {
       res.json(users)
     })
@@ -27,32 +29,32 @@ router.get('/', (req, res, next) => {
 // Route to get all friends
 //filter of all users those ids that match with friend array 
 router.get('/friends', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-
+  var userId = req.userId
   var friends = req.user._friends;
-  User.findById({'_id': { $in: friends}})
-    .then(users => {
-      res.json(users)
+  User.find({'_id': { $in: friends}})
+    .then(friends => {
+      res.json(friends)
     })
 });
 
 
-// Route to get all users
+// Route to get 1 user
 router.get('/:id', (req, res, next) => {
-  Conversation.find(req.params.id)
+  User.findById(req.params.id)
   .populate("_friends")
     .then(user=> {
       res.json(user)
     })
+    .catch(err => next(err))
 });
 
-/* EDIT a Conversation. */
+/* EDIT User. */
 router.patch('/:id', (req, res, next) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
-  //change title and design updates so that they will only be updated when there is a new value
-  //call the route patch 
+  
   let updates = {};
   if (req.body._friends !== ""){updates._friends = req.body._friends };
   if (req.body.name !== ""){updates.name = req.body.name};
@@ -67,6 +69,20 @@ router.patch('/:id', (req, res, next) => {
   }) 
   .catch(error => next(error))     
 })
+
+//Add a friend 
+router.post('/friends', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
+  let {friendId} = req.body
+  User.findByIdAndUpdate(req.user._id , {$push: { _friends: friendId } })
+  .then(() => {
+    res.json({
+      success: true,
+    });
+  })
+  .catch(err => next(err))
+})
+
+// ...Object.keys(req.body) 
 
 
 // Route to add a picture on one user with Cloudinary

@@ -12,7 +12,7 @@ const { Strategy, ExtractJwt } = require("passport-jwt");
 const config = require("./configs/index");
 var User = require('./models/user');
 var authRoutes = require('./routes/auth');
-var countriesRoutes = require('./routes/countries');
+// var countriesRoutes = require('./routes/countries');
 var usersRoutes = require('./routes/users');
 var conversationsRoutes = require("./routes/conversations");
 

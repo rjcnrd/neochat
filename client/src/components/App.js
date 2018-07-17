@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
 import Chat from './Chat';
-// import {Button} from "reactstrap";
+import {Button} from "reactstrap";
+import Conversations from "./Conversations"
 
 
 import Secret from './Secret';
@@ -45,14 +46,7 @@ class App extends Component {
   
     let id =  api.loadUser().id
     
-    // .then(user=>{
-    //   console.log("user",user)
-    // })
 
-    // api
-    // .loadUser()
-    // .then((user) => {
-    //   console.log("user", user);
       api
         .getUserConversations(id)
         .then(conversations => {
@@ -62,6 +56,21 @@ class App extends Component {
           });
         })
         .catch(err => console.log(err));
+  }
+
+  componentDidUpdate() {
+    setTimeout(() => {
+      let id =  api.loadUser().id
+      api
+        .getUserConversations(id)
+        .then(conversations => {
+          console.log("conversations of this user", conversations);
+          this.setState({
+            conversations: conversations
+          });
+        })
+        .catch(err => console.log(err));
+    }, 2000)
   }
   
   
@@ -93,19 +102,18 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to neoChat</h1>
-
           <Link to="/">Home</Link> 
           {/* <Link to="/countries">Countries</Link> 
           <Link to="/add-country">Add country</Link>  */}
           {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
           {!api.isLoggedIn() && <Link to="/login">Login</Link> }
+          {api.isLoggedIn() && <Link to="/conversations">conversations</Link> }
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
           <Link to="/secret">Secret</Link> 
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
-          {/* <Route path="/countries" component={Countries} />
-          <Route path="/add-country" component={AddCountry} /> */}
+          <Route path="/conversations" exact component={Conversations} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />

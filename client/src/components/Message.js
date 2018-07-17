@@ -9,7 +9,7 @@ class Message extends Component {
 
   render() {                
     return (
-      <div className="Message">
+      <div className="MyMessage">
         {(api.loadUser().id === this.props.message._creator) && <div className="right"><p>{this.props.message.text}</p></div>}
 
         {(api.loadUser().id !== this.props.message._creator) && <div className="left"><p>{this.props.message.text}</p></div>}

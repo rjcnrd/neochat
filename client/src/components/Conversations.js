@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../api";
+import Chat from './Chat';
 
 class Conversations extends Component {
   constructor(props) {
@@ -7,6 +8,23 @@ class Conversations extends Component {
     this.state = {
       conversations: []
     };
+  }
+
+  handleUpdateConversation(conversationId,text){
+    api.addMessage(conversationId,
+      {
+      text: text,
+      _creator: api.loadUser().id,
+    })
+    .then(()=>api.getUserConversations(api.loadUser().id))
+    .then(conversations => {
+      this.setState({
+        conversations: conversations
+      });
+    })
+    .catch(err => console.log(err));
+    console.log("message added to conversation, state updated")
+
   }
 
   handleAddConversation(e) {
@@ -53,8 +71,9 @@ class Conversations extends Component {
   }
   render() {
     return (
-      <div className="Users">
-        <button onClick={e => this.handleAddConversation(e)}>
+      <div className="Conversations">
+      <p>Overview of all Conversations</p>
+        {/* <button onClick={e => this.handleAddConversation(e)}>
           {" "}
           Add Conversation (hard coded)
         </button>
@@ -64,7 +83,10 @@ class Conversations extends Component {
         </button>
         <button onClick={e => this.handleAddMesage(e)}>
           Add Message (hard coded)
-        </button>
+        </button> */}
+
+        {this.state.conversations.map((c,i) => <Chat conversation={c} key={i} handleUpdateConversation={this.handleUpdateConversation.bind(this)}/>)}
+
       </div>
     );
   }

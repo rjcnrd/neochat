@@ -25,7 +25,7 @@ getConversations() {
 
 getConversationbyId(conversationId) {
   return service
-    .get('/conversations/'+conversationId)
+    .get('/conversations/conversations/'+conversationId)
     .then(res => res.data)
     .catch(errHandler);
 },
@@ -49,6 +49,7 @@ addConversation(data) {
   return service
     .post('/conversations', data)
     .then(res => res.data)
+    .then(res => console.log("ADD CONVERSATION",res))
     .catch(errHandler);
 },
 
@@ -100,6 +101,11 @@ addFriend(friendId){
   .post('/users/friends',{friendId})
   .then(res => res.data)
   .catch(errHandler);
+},
+
+getLastUserUpdate(userId){
+return service
+.get("users/")
 },
 
 

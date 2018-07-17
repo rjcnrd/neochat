@@ -3,16 +3,20 @@ import api from '../api';
 
 
 class Message extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+  } 
+  // how do i get the other participant into the conversation 
+
+
+  
 
   render() {                
     return (
-      <div className="MyMessage">
-        {(api.loadUser().id === this.props.message._creator) && <div className="right"><p>{this.props.message.text}</p></div>}
+      <div className="Message">
+        {(api.loadUser().id === this.props.message._creator) && <div className="right ml-auto w-50 text-right"><p>{this.props.message.text}</p></div>}
 
-        {(api.loadUser().id !== this.props.message._creator) && <div className="left"><p>{this.props.message.text}</p></div>}
+        {(api.loadUser().id !== this.props.message._creator) && <div className="left  w-50 text-left"><p>{this.props.message.text}</p></div>}
   
       </div>
     );

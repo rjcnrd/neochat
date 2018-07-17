@@ -22,6 +22,11 @@ const conversationSchema = new Schema({
   design: { type: String, enum: styles}
 
 
+},{
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 });
 
 module.exports = mongoose.model("Conversation", conversationSchema);

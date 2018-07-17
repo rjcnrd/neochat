@@ -21,7 +21,8 @@ router.get('/', (req, res, next) => {
 });
 
 //GET a single conversation
-router.get('/conversation/:id', (req, res, next) => {
+router.get('/conversations/:id', (req, res, next) => {
+  console.log("hii")
   Conversation.findById(req.params.id)
   .populate("_messages")
     .populate("_participants")

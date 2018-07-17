@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
-import Chat from './Chat';
-import {Button} from "reactstrap";
 import Conversations from "./Conversations"
 
 
-import Secret from './Secret';
 import Login from './Login';
 import Signup from './Signup';
 import api from '../api';
@@ -24,16 +21,28 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    // // TODO!!!
+    // setInterval(() => {
+    //   api.getLastUserUpdate()
+    //   .then(lastUserUpdate => {
+    //     if (lastUserUpdate !== this.state.lastUserUpdate) {
+    //       this.setState({
+    //         lastUserUpdate
+    //       })
+    //     }
+    //   })
+    // }, 2000)
     
-    api
-    .getFriends()
-    .then(friends => {
-      console.log("friends", friends);
-      this.setState({
-        friends: friends
-      });
-    })
-    .catch(err => console.log(err));
+    // api
+    // .getFriends()
+    // .then(friends => {
+    //   console.log("friends", friends);
+    //   this.setState({
+    //     friends: friends
+    //   });
+    // })
+    // .catch(err => console.log(err));
     
     api
     .getUsers().then(users => {
@@ -64,36 +73,16 @@ class App extends Component {
       api
         .getUserConversations(id)
         .then(conversations => {
-          console.log("conversations of this user", conversations);
           this.setState({
             conversations: conversations
           });
         })
         .catch(err => console.log(err));
-    }, 2000)
+    }, 10000)
   }
-  
-  
   
   handleLogoutClick(e) {
     api.logout()
-  }
-
-  handleUpdateConversation(conversationId,text){
-    api.addMessage(conversationId,
-      {
-      text: text,
-      _creator: api.loadUser().id,
-    })
-    .then(()=>api.getUserConversations(api.loadUser().id))
-    .then(conversations => {
-      this.setState({
-        conversations: conversations
-      });
-    })
-    .catch(err => console.log(err));
-    console.log("message added to conversation, state updated")
-
   }
 
   render() {                
@@ -101,7 +90,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to neoChat</h1>
+          <h1 className="App-title">Welcome to neoChat, {api.loadUser().name}</h1>
           <Link to="/">Home</Link> 
           {/* <Link to="/countries">Countries</Link> 
           <Link to="/add-country">Add country</Link>  */}
@@ -113,15 +102,12 @@ class App extends Component {
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/conversations" exact component={Conversations} />
+          <Route path="/conversations" component={Conversations} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
-          <Route path="/secret" component={Secret} />
           <Route render={() => <h2>404</h2>} />
         </Switch>   
-        {/* display for each conversation a chat!  */}
         
-        {this.state.conversations.map((c,i) => <Chat conversation={c} key={i} handleUpdateConversation={this.handleUpdateConversation.bind(this)}/>)}
 
   
       </div>

@@ -4,12 +4,12 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 20px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: rgb(56, 17, 230);
+  height: 100px;
   padding: 20px;
   color: white;
 }
@@ -33,16 +33,52 @@
 }
 
 .Chat{
-  background: pink;
+  background-image:url("../images/turqouise.png");
 }
 
 .right{
-  background:#ffffff70;
+  background:#fafafabe;
   text-align: right;
+  border-radius: 25px;
+  margin-right: 15px;
+  padding-right: 5px;
+
 }
 
 
 .left{
-  background: #80808040;
+  background: #fafafabe;
   text-align: left;
+  border-radius: 25px;
+  margin-left: 15px;
+  padding-left: 5px;
+
+}
+
+.Conversations {
+  background-image:"../images/bluegradient.png";
+  background-repeat: repeat-x;
+  height:100%;
+}
+
+.messagePreview{
+  background-color: turquoise;
+  height:100vh;
+  overflow-y: scroll;
+
+}
+
+.messageDetails {
+  background-color:#c0d3d4cb;
+  height:100vh;
+  overflow-y: scroll;
+
+}
+
+.chatInput {
+  height:50px;
+}
+
+.conversationTitle{
+  position:absolute;
 }

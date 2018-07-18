@@ -22,6 +22,10 @@ class SuggestedResponse extends Component {
     return (this.props.authorOfLastMessage !== api.loadUser().id)
   }
 
+  turnTextIntoWords(text){
+    return text.match(/("[^"]+"|[^"\s]+)/g);
+  }
+
   render() {                
     return (
        this.checkDisplay() && 

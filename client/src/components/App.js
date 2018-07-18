@@ -98,7 +98,6 @@ class App extends Component {
           {!api.isLoggedIn() && <Link to="/login">Login</Link> }
           {api.isLoggedIn() && <Link to="/conversations">conversations</Link> }
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
-          <Link to="/secret">Secret</Link> 
         </header>
         <Switch>
           <Route path="/" exact component={Home} />

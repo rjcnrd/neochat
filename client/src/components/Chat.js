@@ -30,6 +30,13 @@ class Chat extends Component {
     });
   }
 
+  handleAddSuggestion(suggestion){
+    this.props.onNewUserMessage(
+      this.state.conversation._id,
+      suggestion,
+    );
+  }
+
   componentDidUpdate() {
     api
       .getConversationbyId(this.props.match.params.conversationId)
@@ -78,7 +85,7 @@ class Chat extends Component {
           Send
         </Button>
 
-        <SuggestedResponse authorOfLastMessage={this.state.lastMessageAuthor} />
+        <SuggestedResponse authorOfLastMessage={this.state.lastMessageAuthor} onPickSuggestion={this.handleAddSuggestion.bind(this)}/>
         {/* {(this.state.conversations &&this.state.conversations.length > 0) &&<div>{this.state.lastMessageAuthor !== api.loadUser().id && <SuggestedResponse />} } </div>} */}
 
         <div>

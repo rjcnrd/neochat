@@ -15,7 +15,7 @@ class Message extends Component {
     return (
       <div className="Message">
         {(api.loadUser().id === this.props.message._creator) && <div className="right ml-auto w-50 text-right">
-          <p>{ this.props.message.text? this.props.message.text : <img src="this.props.message.imgUrl"/> }</p>
+          <p>{ this.props.message.text? this.props.message.text : <img src={this.props.message.imgUrl}/> }</p>
           </div>}
 
         {(api.loadUser().id !== this.props.message._creator) && <div className="left mr-auto w-50 text-left"><p>{this.props.message.text}</p></div>}

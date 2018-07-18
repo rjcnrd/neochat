@@ -15,6 +15,7 @@ class Conversations extends Component {
       users:[],
       newConversationName: "",
       newConversationPartner:"",
+    
     };
     console.log("Conversation constructor")
 
@@ -46,7 +47,7 @@ class Conversations extends Component {
     })
     .then(()=>{
       api
-      .getConversations()
+      .getUserConversations(api.loadUser().id)
       .then(conversations => {
         this.setState({
           conversations: conversations,
@@ -87,7 +88,7 @@ class Conversations extends Component {
     .then(()=>{console.log(" handleAddConversation passiert")})
     .then(()=>{
       api
-      .getConversations()
+      .getUserConversations(api.loadUser().id)
       .then(conversations => {
         this.setState({
           conversations: conversations,
@@ -122,9 +123,14 @@ class Conversations extends Component {
 
   render() {
     return (
+
+   
+
+
        <div className="Conversations row">
-        <div className="col-3 messagePreview">
-            <Link to={`/conversations/`}><p>Overview of all Conversations</p></Link>
+        <div className="col-4 messagePreview">
+            <Link to={`/conversations/`}><h1>Chats</h1></Link>
+            {api.loadUser().name ? <p> of {api.loadUser().name}</p> : null }
             {this.state.conversations.map((conversation,i) =>   
             <Link to={`/conversations/${conversation._id}`}><p>{conversation.title}</p></Link>
             )}
@@ -156,7 +162,7 @@ class Conversations extends Component {
 
         </div>
 
-       <div className="col-9 messageDetails">
+       <div className="col-8 messageDetails">
 
          <Route path="/conversations/:conversationId" 
           render={props => <Chat {...props} onNewUserMessage={this.handleNewUserMessage.bind(this)} />} 
@@ -164,6 +170,9 @@ class Conversations extends Component {
         </div>
         
        </div>
+   
+
+
     );
   
   }

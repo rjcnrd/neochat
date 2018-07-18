@@ -39,6 +39,7 @@
   border-radius: 25px;
   margin-right: 10px;
   padding-right: 5px;
+  width:80%;
 
 }
 
@@ -57,6 +58,7 @@
   border-radius: 25px;
   margin-left: 10px;
   padding-left: 5px;
+  width:80%;
 
 }
 
@@ -77,6 +79,7 @@
   height:100vh;
   overflow-y: scroll;
   background:white;
+  padding: 15px;
 
 }
 
@@ -90,7 +93,6 @@
 
 body{
   height:100vh;
-  background: url(https://i.imgur.com/51p5SCq.gif) repeat center fixed;
 }
 
 h1 {
@@ -108,9 +110,14 @@ h3 {
 
 .Login{
   padding:20vw;
+  background: url(https://i.imgur.com/51p5SCq.gif) repeat center fixed;
 }
 
 .Signup{
   padding:20vw;
   background: #ed008c;
+}
+
+p{
+  font-style: caption;
 }

@@ -82,7 +82,7 @@ class App extends Component {
           });
         })
         .catch(err => console.log(err));
-    }, 100000)
+    }, 2000)
   }
   
   handleLogoutClick(e) {
@@ -94,11 +94,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        {/* <Row>
-          <Col xs="6"><p className="App-title">{api.loadUser().name ? <p>Welcome, {api.loadUser().name}</p> : null }</p> </Col>
-          <Col xs="6">{api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }</Col>
-        </Row>
-           */}
+        
+        
           <h1>neochat 
           {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
           </h1> 

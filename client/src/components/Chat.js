@@ -67,17 +67,19 @@ class Chat extends Component {
     return (
       <div className="Chat">
         <div className="col-12 conversationTitle">
-          <p>"{this.state.conversation.title}"</p>
+          <p>{this.state.conversation.title}</p>
         </div>
+
         <span>
           <input
             type="textarea"
-            placeholder="Type your text here"
+            placeholder="what do you want to talk about?"
             className="col-12 chatInput"
             onChange={e => this.handleInputChange(e)}
             value={this.state.newText}
           />
         </span>
+
         <Button
           className="col-12"
           onClick={e => this.handleUpdateConversation(e)}

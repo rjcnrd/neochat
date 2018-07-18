@@ -1,10 +1,22 @@
-const mongoose = require("mongoose");
+require('dotenv').config()
+
 const Message = require("../models/Message");
 const Conversation = require("../models/Conversation");
 const User = require("../models/User");
+const Emoji = require("../models/Emoji")
+const emojis = require("../datasets/emoji.json")
 
-const dbName = "neoChat";
-mongoose.connect(`mongodb://localhost/${dbName}`);
+require('../configs/database');
+
+
+
+Emoji.deleteMany()
+.then(()=>{
+  emojis.map(emoji=>{Emoji.create(emoji)})
+  
+})
+.then(()=>{console.log("success, we imported a bunch of emojis");
+})
 
 
 delayPromise = function(duration) {

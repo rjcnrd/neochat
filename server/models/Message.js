@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const messageSchema = new Schema({
-  text: {
-    type: String,
-    required: [true, "Content is required"]
-  },
+  text: String,
+
+  imgUrl: String,
 
   // isRead: { type: Boolean },
 

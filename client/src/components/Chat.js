@@ -84,9 +84,7 @@ class Chat extends Component {
         >
           Send
         </Button>
-
-        <SuggestedResponse authorOfLastMessage={this.state.lastMessageAuthor} onPickSuggestion={this.handleAddSuggestion.bind(this)}/>
-        {/* {(this.state.conversations &&this.state.conversations.length > 0) &&<div>{this.state.lastMessageAuthor !== api.loadUser().id && <SuggestedResponse />} } </div>} */}
+        
 
         <div>
           {this.state.conversation._messages !== undefined

@@ -21,18 +21,13 @@ export default {
  
 
 // //Giphy
-// getGiphy(keyword){
-//   return client
-//   .search('gifs', {"q": keyword})
-//     .then((response) => {
-//       response.data.forEach((gifObject) => {
-//         console.log(gifObject)
-//       })
-//     })
-//     .catch((err) => {
-  
-//     })
-// },
+getGiphy(searchTerm){
+  return service
+  .get('/giphys/'+searchTerm)
+  .then(res => res.data)
+  .catch(errHandler);
+},
+
 
 //Conversations
 

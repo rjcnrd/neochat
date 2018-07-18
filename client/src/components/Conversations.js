@@ -30,9 +30,20 @@ class Conversations extends Component {
     api.addMessage(conversationId,
       {
         text: newText,
+        imgUrl: null,
         _creator: api.loadUser().id,
       }
     )
+    .then(()=>{
+      api.addMessage(conversationId,
+        { 
+          text: null,
+          imgUrl: "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
+          _creator: api.loadUser().id,
+        }
+      ),
+      console.log("created a cat gif message")
+    })
     .then(()=>{
       api
       .getConversations()

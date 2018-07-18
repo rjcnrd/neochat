@@ -24,6 +24,8 @@ class App extends Component {
 
   componentDidMount() {
 
+    console.log("giphycall",api.getGiphy("cat"))
+
     // // TODO!!!
     // setInterval(() => {
     //   api.getLastUserUpdate()
@@ -80,12 +82,13 @@ class App extends Component {
           });
         })
         .catch(err => console.log(err));
-    }, 10000)
+    }, 100000)
   }
   
   handleLogoutClick(e) {
     api.logout()
   }
+
 
   render() {                
     return (

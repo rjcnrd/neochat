@@ -15,6 +15,8 @@ var authRoutes = require('./routes/auth');
 // var countriesRoutes = require('./routes/countries');
 var usersRoutes = require('./routes/users');
 var conversationsRoutes = require("./routes/conversations");
+var giphysRoutes = require("./routes/giphys");
+
 
 require('./configs/database');
 require('./configs/cloudinary');
@@ -65,7 +67,7 @@ passport.use(strategy);
 app.use('/api', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/conversations', conversationsRoutes);
-
+app.use('/api/giphys', giphysRoutes);
 
 
 // For any routes that starts with "/api", catch 404 and forward to error handler

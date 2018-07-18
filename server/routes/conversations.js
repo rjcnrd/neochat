@@ -22,7 +22,6 @@ router.get('/', (req, res, next) => {
 
 //GET a single conversation
 router.get('/conversations/:id', (req, res, next) => {
-  console.log("hii")
   Conversation.findById(req.params.id)
   .populate("_messages")
     .populate("_participants")
@@ -82,8 +81,8 @@ router.delete('/:conversationId', (req, res, next) => {
 
 //Add a message, store user into the message. 
 router.post('/:conversationId/messages', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-  let {text} = req.body;
-  Message.create({text, _creator:req.user._id})
+  let {text,imgUrl} = req.body;
+  Message.create({text, imgUrl, _creator:req.user._id})
     .then(message => {
       Conversation.findByIdAndUpdate(req.params.conversationId, {$push: { _messages: message._id } })
       .then(() => {

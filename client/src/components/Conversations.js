@@ -61,11 +61,11 @@ class Conversations extends Component {
     console.log("conversation name", this.state.newConversationName)
   }
 
-  handleConversationPartner(userId){
+  handleConversationPartner(e){
     this.setState({
-      newConversationPartner: userId,
+      newConversationPartner: e.target.value,
     })
-    console.log("userId of the conversation partner",userId)
+    console.log("userId of the conversation partner",e.target.value)
   }
 
   handleAddConversation(){
@@ -124,8 +124,8 @@ class Conversations extends Component {
             
             <div>
               <Label for="exampleSelect">Select Friend</Label>
-              <Input type="select" name="users" id="exampleSelect">
-              {this.state.users.map((u, i) =><option value={u._id} key={u._id} onSelect={() => this.handleConversationPartner(u._id)}>{u.name}</option>)}
+              <Input type="select" name="users" id="exampleSelect" onChange={(e) => this.handleConversationPartner(e)}>
+              {this.state.users.map((u, i) =><option value={u._id} key={u._id}>{u.name}</option>)}
               </Input>
               <Input type="email" name="email" placeholder="Chat Name" onChange={(e) => this.handleNameOfConversation(e)} />
               {/* <input type="textarea" placeholder="What do you want to talk about?" onChange={(e) => this.handleNameOfConversation(e)}/> */}

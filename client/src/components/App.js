@@ -90,7 +90,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to neoChat, {api.loadUser().name}</h1>
+          <h1 className="App-title">{api.loadUser().name ? <p>Welcome to neoChat, {api.loadUser().name}</p> : null }</h1>
           <Link to="/">Home</Link> 
           {/* <Link to="/countries">Countries</Link> 
           <Link to="/add-country">Add country</Link>  */}
@@ -100,7 +100,8 @@ class App extends Component {
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
         </header>
         <Switch>
-          <Route path="/" exact component={Home} />
+          {/* <Route path="/" exact component={Home} /> */}
+          <Route path="/" exact component={Login} />
           <Route path="/conversations" component={Conversations} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />

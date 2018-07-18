@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// var GphApiClient = require('giphy-js-sdk-core')
+// client = GphApiClient("sQQwDPelRMy64JYKAWGWisEH7oI3MvzO")
+
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3030/api',
 });
@@ -11,9 +14,26 @@ const errHandler = err => {
   throw err;
 };
 
+
+
 export default {
   service: service,
  
+
+// //Giphy
+// getGiphy(keyword){
+//   return client
+//   .search('gifs', {"q": keyword})
+//     .then((response) => {
+//       response.data.forEach((gifObject) => {
+//         console.log(gifObject)
+//       })
+//     })
+//     .catch((err) => {
+  
+//     })
+// },
+
 //Conversations
 
 getConversations() {

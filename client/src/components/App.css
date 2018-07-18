@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: rgb(56, 17, 230);
+  background-color: #A5EFBD;
   height: 100px;
   padding: 20px;
   color: white;
@@ -81,4 +81,9 @@
 
 .conversationTitle{
   position:absolute;
+}
+
+body{
+  height:100vh;
+  background: url(https://i.imgur.com/51p5SCq.gif) repeat center fixed;
 }

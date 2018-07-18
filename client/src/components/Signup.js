@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
+import {Label,Input,Button,Form,FormGroup,Row,Col} from 'reactstrap';
+
 
 class Signup extends Component {
   constructor(props) {
@@ -39,12 +41,25 @@ class Signup extends Component {
     return (
       <div className="Signup">
         <h2>Signup</h2>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Name: <input type="text" value={this.state.name} onChange={(e) => {this.handleInputChange("name", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Signup</button>
-        </form>
+        <Form>
+        <FormGroup>
+          <Label for="exampleEmail" >Email</Label>
+          <Input value={this.state.email} type="text" name="email" id="exampleEmail" placeholder="email@funkydomain.com" onChange={(e) => {this.handleInputChange("email", e)}} />
+        </FormGroup>
+        <FormGroup>
+          <Label for="name">Username</Label>
+          <Input value={this.state.name} type="text" name="email" id="exampleEmail" placeholder="don't be shy" onChange={(e) => {this.handleInputChange("name", e)}} />
+        </FormGroup>
+        <FormGroup>
+          <Label for="examplePassword">Password</Label>
+          <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} name="password" id="examplePassword" placeholder="secret password" />
+        <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
+        </FormGroup>
+        </Form> 
+         
+
+        
+
       </div>
     );
   }

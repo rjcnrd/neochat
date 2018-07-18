@@ -96,9 +96,9 @@ class App extends Component {
           <Col xs="6">{api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }</Col>
         </Row>
            */}
-          <h1>neochat</h1> 
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
-          
+          <h1>neochat 
+          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
+          </h1> 
           {/* <Link to="/">Home</Link>  */}
           {/* <Link to="/countries">Countries</Link> 
           <Link to="/add-country">Add country</Link>  */}

@@ -36,9 +36,6 @@ class Login extends Component {
     return (
       
       <div className="Login">
-
-
-
         <Form>
         <FormGroup>
           <Label for="exampleEmail"><h3>Email</h3></Label>
@@ -47,11 +44,11 @@ class Login extends Component {
         <FormGroup>
           <Label for="examplePassword"><h3>Password</h3></Label>
           <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} name="password" id="examplePassword" placeholder="your password" />
-        <Button onClick={(e) => this.handleClick(e)}>Login</Button>
         </FormGroup>
         </Form> 
+        <Button color="primary"onClick={(e) => this.handleClick(e)}>Login</Button>
 
-<p>What? Not on neoChat yet? <Link to="/signup">Signup</Link> and become part of the community</p>        
+<p>What? Not on neoChat yet? <Link to="/signup">Signup</Link> <br/>and become part of the community</p>        
       </div>
     );
   }

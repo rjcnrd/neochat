@@ -113,12 +113,12 @@ class Conversations extends Component {
     return (
        <div className="Conversations row">
         <div className="col-3 messagePreview">
-            <p>Overview of all Conversations</p>
+            <Link to={`/conversations/`}><p>Overview of all Conversations</p></Link>
             {this.state.conversations.map((conversation,i) =>   
             <Link to={`/conversations/${conversation._id}`}><p>{conversation.title}</p></Link>
             )}
 
-          <Button onClick={e => this.displayAddConversation(e)}>Add Conversation</Button>
+          <Button color="primary" onClick={e => this.displayAddConversation(e)}>Add Conversation</Button>
           
             {this.state.addConversationVisible && 
             

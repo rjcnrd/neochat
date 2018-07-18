@@ -41,8 +41,10 @@ class Signup extends Component {
   render() {   
     return (
       <div className="Signup">
+
         <h1>Sign up</h1>
         <p>and become part of the funniest chat community on the web</p>
+        <img src="https://media.giphy.com/media/l2JHZ0dIcyFo5UQGQ/giphy.gif" alt="" height="100px"/>
         <Form>
         <FormGroup>
           <Label for="exampleEmail"><h3>Email</h3></Label>
@@ -57,7 +59,7 @@ class Signup extends Component {
           <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} name="password" id="examplePassword" placeholder="secret password" />
         </FormGroup>
         </Form> 
-        <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
+        <Button color="primary"onClick={(e) => this.handleClick(e)}>Signup</Button>
         <p>
           woopsie, I do have an account... <Link to="/">log me in</Link>
         </p>

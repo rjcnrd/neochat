@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 import {Label,Input,Button,Form,FormGroup,Row,Col} from 'reactstrap';
+import {  Link } from 'react-router-dom';
 
 
 class Signup extends Component {
@@ -40,22 +41,26 @@ class Signup extends Component {
   render() {   
     return (
       <div className="Signup">
-        <h2>Signup</h2>
+        <h1>Sign up</h1>
+        <p>and become part of the funniest chat community on the web</p>
         <Form>
         <FormGroup>
-          <Label for="exampleEmail" >Email</Label>
+          <Label for="exampleEmail"><h3>Email</h3></Label>
           <Input value={this.state.email} type="text" name="email" id="exampleEmail" placeholder="email@funkydomain.com" onChange={(e) => {this.handleInputChange("email", e)}} />
         </FormGroup>
         <FormGroup>
-          <Label for="name">Username</Label>
+          <Label for="name"><h3>Username</h3></Label>
           <Input value={this.state.name} type="text" name="email" id="exampleEmail" placeholder="don't be shy" onChange={(e) => {this.handleInputChange("name", e)}} />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
+          <Label for="examplePassword"><h3>Password</h3></Label>
           <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} name="password" id="examplePassword" placeholder="secret password" />
-        <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
         </FormGroup>
         </Form> 
+        <Button onClick={(e) => this.handleClick(e)}>Signup</Button>
+        <p>
+          woopsie, I do have an account... <Link to="/">log me in</Link>
+        </p>
          
 
         

@@ -9,9 +9,9 @@
 
 .App-header {
   background-color: #A5EFBD;
-  height: 100px;
+  height: 20vh;
   padding: 20px;
-  color: white;
+  color: black;
 }
 
 .App-header a {
@@ -20,7 +20,7 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .App-intro {
@@ -56,20 +56,18 @@
 }
 
 .Conversations {
-  background-image:"../images/bluegradient.png";
   background-repeat: repeat-x;
   height:100%;
 }
 
 .messagePreview{
-  background-color: turquoise;
+  background-color: #F5D5ED;
   height:100vh;
   overflow-y: scroll;
 
 }
 
 .messageDetails {
-  background-color:#c0d3d4cb;
   height:100vh;
   overflow-y: scroll;
 
@@ -86,4 +84,24 @@
 body{
   height:100vh;
   background: url(https://i.imgur.com/51p5SCq.gif) repeat center fixed;
+}
+
+h1 {
+  font-family: 'Bungee Shade', cursive;
+}
+
+h3 {
+  font-family: 'Bungee Shade', cursive;
+}
+
+.componentDisplay{
+  padding:20px;
+}
+
+.Login{
+  padding:20vw;
+}
+
+.Signup{
+  padding:20vw;
 }

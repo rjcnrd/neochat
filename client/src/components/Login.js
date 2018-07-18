@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 import {Label,Input,Button,Form,FormGroup,Row,Col} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -37,21 +38,20 @@ class Login extends Component {
       <div className="Login">
 
 
-        <h2>Login</h2>
 
         <Form>
         <FormGroup>
-          <Label for="exampleEmail" >Email</Label>
+          <Label for="exampleEmail"><h3>Email</h3></Label>
           <Input value={this.state.email} type="text" name="email" id="exampleEmail" placeholder="email@funkydomain.com" onChange={(e) => {this.handleInputChange("email", e)}} />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} name="password" id="examplePassword" placeholder="secret password" />
+          <Label for="examplePassword"><h3>Password</h3></Label>
+          <Input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}} name="password" id="examplePassword" placeholder="your password" />
         <Button onClick={(e) => this.handleClick(e)}>Login</Button>
         </FormGroup>
         </Form> 
-         
-        
+
+<p>What? Not on neoChat yet? <Link to="/signup">Signup</Link> and become part of the community</p>        
       </div>
     );
   }

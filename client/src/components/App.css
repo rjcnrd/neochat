@@ -170,3 +170,8 @@ p{
 .bye{
   color: black; 
 }
+
+NavBar{
+  background-color: #72E8C2;
+  border-color: #72E8C2;
+}

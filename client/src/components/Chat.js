@@ -78,7 +78,7 @@ class Chat extends Component {
 
     let navbarClassName 
     if (this.props.location.pathname === "/") {
-      navbarClassName = "d-none"
+      navbarClassName = "d-none someClass"
     }
     else {
       navbarClassName = "d-sm-block d-md-none"

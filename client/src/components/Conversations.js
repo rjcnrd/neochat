@@ -38,8 +38,8 @@ class Conversations extends Component {
   // }
 
   handleNewUserMessage(conversationId, newText) {
-
-    if (newText.trim() === "")
+    newText = newText.trim()
+    if (newText === "")
       return;
     
     api.addMessage(conversationId,
@@ -61,6 +61,8 @@ class Conversations extends Component {
       .catch(err => console.log(err))
       
       .then(gifUrl =>{
+        if (newText.toUpperCase() === "IRONHACK")
+          gifUrl = "https://media.giphy.com/media/9ruSu3V8vmcSETRhxf/giphy.gif"
         console.log("GIF URL",gifUrl)
         if (gifUrl)
           api.addMessage(conversationId,

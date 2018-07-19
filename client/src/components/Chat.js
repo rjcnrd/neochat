@@ -11,7 +11,9 @@ import { Button,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem  } from "reactstrap";
+  DropdownItem ,
+Row,
+Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import api from "../api";
 
@@ -86,12 +88,14 @@ class Chat extends Component {
       <div className="Chat">
         
         <Navbar color="light" light expand="xs" className={navbarClassName}>
-          <NavbarBrand to="/" tag={Link}>NeoChat</NavbarBrand>
           <NavbarToggler />
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
+            <NavItem>
+                <NavLink to="/" tag={Link}><h1>NeoChat</h1></NavLink>
+              </NavItem>
               <NavItem>
-                <NavLink>{this.state.conversation.title}</NavLink>
+                <NavLink><span>{this.state.conversation.title}</span></NavLink>
               </NavItem>
             </Nav>
           </Collapse>

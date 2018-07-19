@@ -107,6 +107,7 @@ router.post(
 );
 
 router.get("/giphy/:searchTerm", (req, res, next) => {
+
   console.log("entering giphy route,req.params.searchTerm",req.params.searchTerm)
   let searchTerm = req.params.searchTerm;
   giphy
@@ -114,33 +115,10 @@ router.get("/giphy/:searchTerm", (req, res, next) => {
       `search?api_key=sQQwDPelRMy64JYKAWGWisEH7oI3MvzO&q=${searchTerm}&limit=1`
     )
     .then(answer => {
+
       console.log("answer.data.",answer.data)
       res.json(answer.data);
     });
 });
-
-//Add a message, get  giphy, store user into the message.
-
-// router.post('/:conversationId/messages', passport.authenticate("jwt", config.jwtSession),(req, res, next) => {
-//   let {text} = req.body;
-//   giphy.get(`search?api_key=sQQwDPelRMy64JYKAWGWisEH7oI3MvzO&q=chicken&limit=1`)
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-// });
-//   Message.create({text, imgUrl:giphyResponse.data.url, _creator:req.user._id})
-//     .then(message => {
-//       Conversation.findByIdAndUpdate(req.params.conversationId, {$push: { _messages: message._id } })
-//       .then(() => {
-//         res.json({
-//           success: true,
-//           message
-//         });
-//       })
-//     })
-//     .catch(err => next(err))
-// });
 
 module.exports = router;

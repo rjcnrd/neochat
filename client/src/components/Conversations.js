@@ -51,12 +51,15 @@ class Conversations extends Component {
     )
     .then(()=>{
       console.log("created message in handleNewUserMessage")
+
       api.getGiphy(newText)
+      
       .then(arrayOfGifs => {
        console.log(arrayOfGifs.data[0].images.fixed_width.url,"arrayOfGifs.data[0].images.fixed_width.url");
        return arrayOfGifs.data[0].images.fixed_width.url;
       })
       .catch(err => console.log(err))
+      
       .then(gifUrl =>{
         console.log("GIF URL",gifUrl)
         if (gifUrl)
@@ -167,44 +170,22 @@ class Conversations extends Component {
     return (
 //Left side - preview of all conversations 
       <div className="Conversations">
-        {/* <Navbar color="light" light expand="xs" className={navbarClassName}>
-          <NavbarBrand to="/" tag={Link}>NeoChat</NavbarBrand>
-          <NavbarToggler />
-          <Collapse navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink >GitHub</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar> */}
 
         <Row>
-        <div className={leftColClassName} >
-            <Link to={`/`}><h1>Chats</h1></Link>
-            {api.loadUser().name ? <p className="userName"> of {api.loadUser().name}</p> : null }
-            {this.state.conversations.map((conversation,i) =>   
-            <Link to={`/conversations/${conversation._id}`} key={conversation._id}><div className="conversationNames"><p>{conversation.title}</p></div></Link>
-            )}
 
-          <Button color="primary" onClick={e => this.displayAddConversation(e)}>Add Conversation</Button>
+      <div className={leftColClassName} >
+        <Nav vertical>
+          <NavItem>
+            <NavLink tag={Link} to={`/`}><h1>Chats</h1></NavLink>
+          </NavItem>
+          
+          {api.loadUser().name ? <p className="userName"> of {api.loadUser().name}</p> : null }
+            {this.state.conversations.map((conversation,i) =>   
+              <NavItem>
+            <NavLink tag={Link} to={`/conversations/${conversation._id}`} key={conversation._id}><div className="conversationNames"><p>{conversation.title}</p></div></NavLink>
+            </NavItem> )}          
+          <NavItem>
+          <Button color="secondary" onClick={e => this.displayAddConversation(e)}>Add Conversation</Button>
           
             {this.state.addConversationVisible && 
             
@@ -216,17 +197,32 @@ class Conversations extends Component {
               <Input type="email" name="email" placeholder="Chat Name" onChange={(e) => this.handleNameOfConversation(e)} />
               {/* <input type="textarea" placeholder="What do you want to talk about?" onChange={(e) => this.handleNameOfConversation(e)}/> */}
               
-              <Button color="primary"onClick={() => this.handleAddConversation()}>Let's talk</Button>
-           
-           
+              <Button color="secondary"onClick={() => this.handleAddConversation()}>Let's talk</Button>
+
             </div>
             }
+          </NavItem>
+          <NavItem>
+            
+          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><h1 className="bye">BYE</h1></Link> }
+          </NavItem>
+        </Nav>
+      </div>
+
+          
+        {/* <div className={leftColClassName} >
+            <Link to={`/`}><h1>Chats</h1></Link>
+            {api.loadUser().name ? <p className="userName"> of {api.loadUser().name}</p> : null }
+            {this.state.conversations.map((conversation,i) =>   
+            <Link to={`/conversations/${conversation._id}`} key={conversation._id}><div className="conversationNames"><p>{conversation.title}</p></div></Link>
+            )}
+
             <div>
           {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img alt="byeseal" height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
           </div>
         
 
-        </div>
+        </div> */}
 
        <div className="col-md-8 pt-0 messageDetails">
 

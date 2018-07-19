@@ -88,7 +88,7 @@ class Chat extends Component {
         </Button>
         
 
-        <div>
+        <div className="MessageList">
           {this.state.conversation._messages !== undefined
             ? this.state.conversation._messages
                 .slice(0)

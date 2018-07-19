@@ -111,6 +111,11 @@ class Conversations extends Component {
     })
   }
 
+  handleLogoutClick(e) {
+    api.logout()
+  }
+
+
   componentDidMount() {
     api
       .getConversations()
@@ -142,9 +147,9 @@ class Conversations extends Component {
        <div className="Conversations row">
         <div className="col-4 messagePreview">
             <Link to={`/conversations/`}><h1>Chats</h1></Link>
-            {api.loadUser().name ? <p> of {api.loadUser().name}</p> : null }
+            {api.loadUser().name ? <p className="userName"> of {api.loadUser().name}</p> : null }
             {this.state.conversations.map((conversation,i) =>   
-            <Link to={`/conversations/${conversation._id}`}><p>{conversation.title}</p></Link>
+            <Link to={`/conversations/${conversation._id}`}><div className="conversationNames"><p>{conversation.title}</p></div></Link>
             )}
 
           <Button color="primary" onClick={e => this.displayAddConversation(e)}>Add Conversation</Button>
@@ -160,17 +165,14 @@ class Conversations extends Component {
               {/* <input type="textarea" placeholder="What do you want to talk about?" onChange={(e) => this.handleNameOfConversation(e)}/> */}
               
               <Button color="primary"onClick={() => this.handleAddConversation()}>Let's talk</Button>
+           
+           
             </div>
             }
-
-            {/* <button onClick={e => this.handleEditConversation(e)}>
-              {" "}
-              Edit Conversation(hard coded)
-            </button>
-            <button onClick={e => this.handleAddMesage(e)}>
-              Add Message (hard coded)
-            </button>
-    */}
+            <div>
+          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
+          </div>
+        
 
         </div>
 

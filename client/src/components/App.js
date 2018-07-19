@@ -117,8 +117,6 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route render={() => <h2>404</h2>} />
         </Switch>   
-        
-
   
       </div>
     );

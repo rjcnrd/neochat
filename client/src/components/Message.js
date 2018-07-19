@@ -18,7 +18,8 @@ class Message extends Component {
           <p>{ this.props.message.text? this.props.message.text : <img src={this.props.message.imgUrl}/> }</p>
           </div>}
 
-        {(api.loadUser().id !== this.props.message._creator) && <div className="left mr-auto text-left"><p>{this.props.message.text}</p></div>}
+        {(api.loadUser().id !== this.props.message._creator) && <div className="left mr-auto text-left"><p>{ this.props.message.text? this.props.message.text : <img src={this.props.message.imgUrl}/> }</p>
+          </div>}
   
       </div>
     );

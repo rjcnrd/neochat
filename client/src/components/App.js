@@ -63,7 +63,7 @@ class App extends Component {
           });
         })
         .catch(err => console.log(err));
-    }, 2000)
+    }, 20000)
   }
   
   // handleLogoutClick(e) {

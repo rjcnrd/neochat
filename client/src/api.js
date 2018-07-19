@@ -26,9 +26,9 @@ export default {
  
 
 // //Giphy //randomizer später als seperate funktion hier definieren und aufrufen 
-getGiphy(searchTerm,limit=5){
-  return serviceGiphy
-  .get(`search?api_key=sQQwDPelRMy64JYKAWGWisEH7oI3MvzO&q=${searchTerm}&limit=${limit}`)
+getGiphy(searchTerm){
+  return service
+  .get(`/conversations/giphy/`+searchTerm)
   .then(res => res.data)
   .catch(errHandler);
 },

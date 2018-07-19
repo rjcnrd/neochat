@@ -37,7 +37,7 @@ class Conversations extends Component {
       }
     )
     .then(()=>{
-
+      console.log("created message in handleNewUserMessage")
       api.getGiphy(newText)
       .then(arrayOfGifs => {
        console.log(arrayOfGifs.data[0].images.fixed_width.url,"arrayOfGifs.data[0].images.fixed_width.url");
@@ -55,9 +55,7 @@ class Conversations extends Component {
         )
         console.log("created a cat gif message")
       }) 
-      .then(()=>{
-      })
-      .then(()=>{
+      
         api
         .getUserConversations(api.loadUser().id)
         .then(conversations => {
@@ -66,7 +64,7 @@ class Conversations extends Component {
           });
         })
         .catch(err => console.log(err));
-      })
+      
       console.log("handleNewUserMessage, message created", conversationId, newText);
       console.log("new conversation state", this.state.conversations);
     })

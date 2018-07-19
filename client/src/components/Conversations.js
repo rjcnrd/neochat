@@ -28,6 +28,7 @@ class Conversations extends Component {
   // }
 
   handleNewUserMessage(conversationId, newText) {
+    
     api.addMessage(conversationId,
       {
         text: newText,
@@ -36,27 +37,38 @@ class Conversations extends Component {
       }
     )
     .then(()=>{
-      api.addMessage(conversationId,
-        { 
-          text: null,
-          imgUrl: "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
-          _creator: api.loadUser().id,
-        }
-      ),
-      console.log("created a cat gif message")
-    })
-    .then(()=>{
-      api
-      .getUserConversations(api.loadUser().id)
-      .then(conversations => {
-        this.setState({
-          conversations: conversations,
-        });
+
+      api.getGiphy(newText)
+      .then(arrayOfGifs => {
+       console.log(arrayOfGifs.data[0].images.fixed_width.url,"arrayOfGifs.data[0].url");
+       return arrayOfGifs.data[0].images.fixed_width.url;
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .then(gifUrl =>{
+        api.addMessage(conversationId,
+          { 
+            text: null,
+            imgUrl: gifUrl,
+            _creator: api.loadUser().id,
+          }
+        ),
+        console.log("created a cat gif message")
+      }) 
+      .then(()=>{
+      })
+      .then(()=>{
+        api
+        .getUserConversations(api.loadUser().id)
+        .then(conversations => {
+          this.setState({
+            conversations: conversations,
+          });
+        })
+        .catch(err => console.log(err));
+      })
+      console.log("handleNewUserMessage, message created", conversationId, newText);
+      console.log("new conversation state", this.state.conversations);
     })
-    console.log("handleNewUserMessage, message created", conversationId, newText);
-    console.log("new conversation state", this.state.conversations);
   }
 
   displayAddConversation(){

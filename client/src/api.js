@@ -7,6 +7,10 @@ const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3030/api',
 });
 
+const serviceGiphy = axios.create({
+  baseURL: `http://api.giphy.com/v1/gifs`
+})
+
 //ad external API link here 
 
 const errHandler = err => {
@@ -18,12 +22,13 @@ const errHandler = err => {
 
 export default {
   service: service,
+  serviceGiphy: serviceGiphy,
  
 
-// //Giphy
-getGiphy(searchTerm){
-  return service
-  .get('/giphys/'+searchTerm)
+// //Giphy //randomizer später als seperate funktion hier definieren und aufrufen 
+getGiphy(searchTerm,limit=5){
+  return serviceGiphy
+  .get(`search?api_key=sQQwDPelRMy64JYKAWGWisEH7oI3MvzO&q=${searchTerm}&limit=${limit}`)
   .then(res => res.data)
   .catch(errHandler);
 },

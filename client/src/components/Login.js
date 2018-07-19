@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../api';
-import {Label,Input,Button,Form,FormGroup,Row,Col} from 'reactstrap';
+import {Label,Input,Button,Form,FormGroup} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 

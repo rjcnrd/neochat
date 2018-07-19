@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Message from "./Message";
-import SuggestedResponse from "./SuggestedResponse";
 import { Button } from "reactstrap";
 import api from "../api";
 
@@ -14,7 +13,6 @@ class Chat extends Component {
   }
 
   handleInputChange(e) {
-    console.log("Handling Input Change", e.target.value);
     this.setState({
       newText: e.target.value
     });

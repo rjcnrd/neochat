@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import api from "../api";
 import Chat from './Chat';
 import { Link, Route } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Label, Input } from 'reactstrap';
 
 
 
@@ -40,18 +40,19 @@ class Conversations extends Component {
 
       api.getGiphy(newText)
       .then(arrayOfGifs => {
-       console.log(arrayOfGifs.data[0].images.fixed_width.url,"arrayOfGifs.data[0].url");
+       console.log(arrayOfGifs.data[0].images.fixed_width.url,"arrayOfGifs.data[0].images.fixed_width.url");
        return arrayOfGifs.data[0].images.fixed_width.url;
       })
       .catch(err => console.log(err))
       .then(gifUrl =>{
+        console.log("GIF URL",gifUrl)
         api.addMessage(conversationId,
           { 
             text: null,
             imgUrl: gifUrl,
             _creator: api.loadUser().id,
           }
-        ),
+        )
         console.log("created a cat gif message")
       }) 
       .then(()=>{
@@ -140,16 +141,13 @@ class Conversations extends Component {
 
   render() {
     return (
-
-   
-
-
+//Left side - preview of all conversations 
        <div className="Conversations row">
         <div className="col-4 messagePreview">
             <Link to={`/conversations/`}><h1>Chats</h1></Link>
             {api.loadUser().name ? <p className="userName"> of {api.loadUser().name}</p> : null }
             {this.state.conversations.map((conversation,i) =>   
-            <Link to={`/conversations/${conversation._id}`}><div className="conversationNames"><p>{conversation.title}</p></div></Link>
+            <Link to={`/conversations/${conversation._id}`} key={conversation._id}><div className="conversationNames"><p>{conversation.title}</p></div></Link>
             )}
 
           <Button color="primary" onClick={e => this.displayAddConversation(e)}>Add Conversation</Button>

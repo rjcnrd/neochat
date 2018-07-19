@@ -8,7 +8,7 @@ const service = axios.create({
 });
 
 const serviceGiphy = axios.create({
-  baseURL: `http://api.giphy.com/v1/gifs`
+  baseURL: `https://api.giphy.com/v1/gifs`
 })
 
 //ad external API link here 

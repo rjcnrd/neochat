@@ -2,7 +2,17 @@ import React, { Component } from "react";
 import api from "../api";
 import Chat from './Chat';
 import { Link, Route } from 'react-router-dom';
-import { Button, Label, Input } from 'reactstrap';
+import { Button, Label, Input, Row, Col, Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
 
 
 
@@ -28,6 +38,9 @@ class Conversations extends Component {
   // }
 
   handleNewUserMessage(conversationId, newText) {
+
+    if (newText.trim() === "")
+      return;
     
     api.addMessage(conversationId,
       {
@@ -46,12 +59,13 @@ class Conversations extends Component {
       .catch(err => console.log(err))
       .then(gifUrl =>{
         console.log("GIF URL",gifUrl)
-        api.addMessage(conversationId,
-          { 
-            text: null,
-            imgUrl: gifUrl,
-            _creator: api.loadUser().id,
-          }
+        if (gifUrl)
+          api.addMessage(conversationId,
+            { 
+              text: null,
+              imgUrl: gifUrl,
+              _creator: api.loadUser().id,
+            }
         )
         console.log("created a cat gif message")
       }) 
@@ -138,11 +152,53 @@ class Conversations extends Component {
 
 
   render() {
+
+    let navbarClassName 
+    let leftColClassName
+    
+    if (this.props.location.pathname === "/") {
+      navbarClassName = "d-none"
+      leftColClassName = "col-12 messagePreview"
+    }
+    else {
+      navbarClassName = "d-sm-block d-md-none"
+      leftColClassName = "col-4 messagePreview d-none d-md-block"
+    }
     return (
 //Left side - preview of all conversations 
-       <div className="Conversations row">
-        <div className="col-4 messagePreview">
-            <Link to={`/conversations/`}><h1>Chats</h1></Link>
+      <div className="Conversations">
+        {/* <Navbar color="light" light expand="xs" className={navbarClassName}>
+          <NavbarBrand to="/" tag={Link}>NeoChat</NavbarBrand>
+          <NavbarToggler />
+          <Collapse navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink >GitHub</NavLink>
+              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Options
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    Reset
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            </Nav>
+          </Collapse>
+        </Navbar> */}
+
+        <Row>
+        <div className={leftColClassName} >
+            <Link to={`/`}><h1>Chats</h1></Link>
             {api.loadUser().name ? <p className="userName"> of {api.loadUser().name}</p> : null }
             {this.state.conversations.map((conversation,i) =>   
             <Link to={`/conversations/${conversation._id}`} key={conversation._id}><div className="conversationNames"><p>{conversation.title}</p></div></Link>
@@ -166,18 +222,19 @@ class Conversations extends Component {
             </div>
             }
             <div>
-          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
+          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img alt="byeseal" height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
           </div>
         
 
         </div>
 
-       <div className="col-8 messageDetails">
+       <div className="col-md-8 pt-0 messageDetails">
 
          <Route path="/conversations/:conversationId" 
           render={props => <Chat {...props} onNewUserMessage={this.handleNewUserMessage.bind(this)} />} 
         />
         </div>
+        </Row>
         
        </div>
    

@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import Message from "./Message";
-import { Button } from "reactstrap";
+import { Button,  
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem  } from "reactstrap";
+import { Link } from "react-router-dom";
 import api from "../api";
 
 class Chat extends Component {
@@ -61,30 +73,54 @@ class Chat extends Component {
   }
 
   render() {
+
+    let navbarClassName 
+    if (this.props.location.pathname === "/") {
+      navbarClassName = "d-none"
+    }
+    else {
+      navbarClassName = "d-sm-block d-md-none"
+    }
   
     return (
       <div className="Chat">
-        <div className="col-12 conversationTitle">
-          <p>{this.state.conversation.title}</p>
-        </div>
-
-        <span>
-          <input
-            type="textarea"
-            placeholder="what do you want to talk about?"
-            className="col-12 chatInput"
-            onChange={e => this.handleInputChange(e)}
-            value={this.state.newText}
-          />
-        </span>
-
-        <Button
-          className="col-12"
-          onClick={e => this.handleUpdateConversation(e)}
-        >
-          Send
-        </Button>
         
+        <Navbar color="light" light expand="xs" className={navbarClassName}>
+          <NavbarBrand to="/" tag={Link}>NeoChat</NavbarBrand>
+          <NavbarToggler />
+          <Collapse navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink>{this.state.conversation.title}</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+
+        {/* <div className=" conversationTitle">
+          <p>{this.state.conversation.title}</p>
+        </div> */}
+        <form className="mx-5">
+          <div className="form-row mt-3">
+            <div className="col-lg-10">
+              <input
+                type="textarea"
+                placeholder="what do you want to talk about?"
+                className="chatInput form-control"
+                onChange={e => this.handleInputChange(e)}
+                value={this.state.newText}
+              />
+            </div>
+            <div className="col-lg-2">
+              <Button
+                className="form-control btn-block mt-2"
+                onClick={e => this.handleUpdateConversation(e)}
+              >
+                Send
+              </Button>
+            </div>
+          </div>
+        </form>
 
         <div className="MessageList">
           {this.state.conversation._messages !== undefined

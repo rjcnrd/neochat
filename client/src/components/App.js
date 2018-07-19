@@ -76,12 +76,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">  
           <h1>neochat 
-          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
+          {api.isLoggedIn() &&  <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><img alt="Seal" height="50px" src="https://media.giphy.com/media/AmDzMmCJZABsk/giphy.gif"/></Link> }
           </h1> 
          
         </header>
         <Switch>
-          {/* <Route path="/" exact component={Home} /> */}
           {api.isLoggedIn() && <Route path="/" component={Conversations} />} /> }
           <Route path="/" exact component={Login} />
           <Route path="/signup" component={Signup} />

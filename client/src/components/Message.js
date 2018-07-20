@@ -11,7 +11,7 @@ class Message extends Component {
           <p>{ this.props.message.text? this.props.message.text : <img alt="Yolo" className="gif-picture" src={this.props.message.imgUrl}/> }</p>
           </div>}
 
-        {(api.loadUser().id !== this.props.message._creator) && <div className="left mr-auto text-left"><p>{ this.props.message.text? this.props.message.text : <img alt="Gif" src={this.props.message.imgUrl}/> }</p>
+        {(api.loadUser().id !== this.props.message._creator) && <div className="left mr-auto text-left"><p>{ this.props.message.text? this.props.message.text : <img alt="Gif" className="gif-picture" src={this.props.message.imgUrl}/> }</p>
           </div>}
   
       </div>

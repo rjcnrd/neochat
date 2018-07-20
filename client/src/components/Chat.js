@@ -76,66 +76,68 @@ class Chat extends Component {
 
   render() {
 
-    let navbarClassName 
+    let navbarClassName = "neochat-navbar"
     if (this.props.location.pathname === "/") {
-      navbarClassName = "d-none someClass"
+      navbarClassName += " d-none"
     }
     else {
-      navbarClassName = "d-sm-block d-md-none"
+      navbarClassName += " d-sm-block d-md-none"
     }
   
     return (
-      <div className="Chat">
-        
-        <Navbar color="light" light expand="xs" className={navbarClassName}>
-          <NavbarToggler />
-          <Collapse navbar>
-            <Nav className="ml-auto" navbar>
-            <NavItem>
-                <NavLink to="/" tag={Link}><h1>NeoChat</h1></NavLink>
-              </NavItem>
+      <div className="Chat col-md-8 pt-0  messageDetails ">
+          
+          {/* <Navbar color="light" light expand="xs" className={navbarClassName}>
+            <NavbarToggler />
+            <Collapse navbar>
+              <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink><span>{this.state.conversation.title}</span></NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
+                  <NavLink to="/" tag={Link}><h1>NeoChat</h1></NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink><span>{this.state.conversation.title}</span></NavLink>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar> */}
 
-        {/* <div className=" conversationTitle">
-          <p>{this.state.conversation.title}</p>
-        </div> */}
-        <form className="mx-5">
-          <div className="form-row mt-3">
-            <div className="col-lg-10">
-              <input
-                type="textarea"
-                placeholder="what do you want to talk about?"
-                className="chatInput form-control"
-                onChange={e => this.handleInputChange(e)}
-                value={this.state.newText}
-              />
-            </div>
-            <div className="col-lg-2">
-              <Button
-                className="form-control btn-block mt-2"
-                onClick={e => this.handleUpdateConversation(e)}
-              >
-                Send
-              </Button>
-            </div>
+          <div className={navbarClassName}>
+            <Link to="/" tag={Link}><h1>&lt;&nbsp;N</h1></Link>
+            <div>{this.state.conversation.title}</div>
           </div>
-        </form>
 
-        <div className="MessageList">
-          {this.state.conversation._messages !== undefined
-            ? this.state.conversation._messages
-                .slice(0)
-                .reverse()
-                .map((message, i) => (
-                  <Message message={message} key={message._id} />
-                ))
-            : null}
-        </div>
+          <form className="mx-5">
+            <div className="form-row mt-3">
+              <div className="col-lg-10">
+                <input
+                  type="textarea"
+                  placeholder="what do you want to talk about?"
+                  className="chatInput form-control"
+                  onChange={e => this.handleInputChange(e)}
+                  value={this.state.newText}
+                />
+              </div>
+              <div className="col-lg-2">
+                <Button
+                  className="form-control btn-block mt-2"
+                  onClick={e => this.handleUpdateConversation(e)}
+                >
+                  Send
+                </Button>
+              </div>
+            </div>
+          </form>
+
+          <div className="MessageList">
+            {this.state.conversation._messages !== undefined
+              ? this.state.conversation._messages
+                  .slice(0)
+                  .reverse()
+                  .map((message, i) => (
+                    <Message message={message} key={message._id} />
+                  ))
+              : null}
+          </div>
       </div>
     );
   }

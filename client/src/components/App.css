@@ -8,15 +8,15 @@
 }
 
 .App-header {
-  background-color: #A5EFBD;
+  background-color: #a5efbd;
   height: 10vh;
   padding: 7px;
   color: black;
-  display: none; 
+  display: none;
 }
 
-.userName{
-  color: #A5EFBD;
+.userName {
+  color: #a5efbd;
 }
 
 .App-header a {
@@ -33,103 +33,100 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-
-.right{
+.right {
   background: rgba(158, 158, 158, 0.562);
   text-align: right;
   border-radius: 25px;
   margin-right: 10px;
   padding-right: 5px;
-  width:80%;
-
+  width: 80%;
 }
 
-.right p{
+.right p {
   padding: 13px;
 }
 
-.left p{
+.left p {
   padding: 13px;
 }
 
-
-.left{
+.left {
   background: rgba(255, 255, 255, 0.733);
   text-align: left;
   border-radius: 25px;
   margin-left: 10px;
   padding-left: 5px;
-  width:80%;
-
+  width: 80%;
 }
 
 .Conversations {
   background-repeat: repeat-x;
-  height:100%;
+  height: 100%;
 }
 
-.messagePreview{
-  background-color:#a5efbd;
-  height:100vh;
+.messagePreview {
+  background-color: #a5efbd;
+  height: 100vh;
   overflow-y: scroll;
   padding: 2rem;
- 
-
 }
 
 .messageDetails {
-  height:100vh;
+  height: 100vh;
   overflow-y: scroll;
-  background:white;
-background-image: linear-gradient( 0.1deg,  #72E8C2 30%,#ECB1E7 99.9% );
-border-color: white;
-    border-style: dashed;
-
+  background: white;
+  background-image: linear-gradient(0.1deg, #a5efbd 30%, #ecb1e7 99.9%);
+  border-color: white;
+  border-style: dashed;
+  padding: 0;
 }
 
 .chatInput {
-  height:50px;
+  height: 50px;
 }
 
-.conversationTitle{
-  position:absolute;
+.conversationTitle {
+  position: absolute;
 }
 
-body{
-  height:100vh;
+body {
+  height: 100vh;
   background: url(https://i.imgur.com/51p5SCq.gif) repeat center fixed;
-
 }
 
 h1 {
-  font-family: 'Bungee Shade', cursive;
+  font-family: "Bungee Shade", cursive;
   color: black;
 }
 
 h3 {
-  font-family: 'Bungee Shade', cursive;
+  font-family: "Bungee Shade", cursive;
 }
 
-.componentDisplay{
-  padding:20px;
-  background:white;
+.componentDisplay {
+  padding: 20px;
+  background: white;
 }
 
-.Login{
-  padding:20vw;
+.Login {
+  padding: 20vw;
   background: url(https://i.imgur.com/51p5SCq.gif) repeat center fixed;
 }
 
-.Signup{
-  padding:20vw;
+.Signup {
+  padding: 20vw;
   background: #ed008c;
 }
 
-p{
+p {
   font-style: caption;
 }
 
@@ -139,39 +136,46 @@ p{
   border-radius: 20px;
 }
 
-.MessageList{
-
+.MessageList {
   margin-top: 2rem;
-
 }
 
-.chatInput{
+.chatInput {
   border-radius: 20px;
 }
 
-.btn-primary{
+.btn-primary {
   border-radius: 20px;
 }
 
-.conversationNames{
+.conversationNames {
   background: rgba(255, 255, 255, 0.452);
-
 }
-.conversationNames p{
-  color: rgb(70, 70, 70)
-
+.conversationNames p {
+  color: rgb(70, 70, 70);
 }
 
-p{
-  color: rgb(70, 70, 70)
-
+p {
+  color: rgb(70, 70, 70);
 }
 
-.bye{
-  color: black; 
+.bye {
+  color: black;
 }
 
-NavBar{
-  background-color: #72E8C2;
-  border-color: #72E8C2;
+NavBar {
+  background-color: #72e8c2;
+  border-color: #72e8c2;
+}
+
+.Message .gif-picture {
+  width: 200px;
+}
+
+.neochat-navbar {
+  background: #a5efbd;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
 }

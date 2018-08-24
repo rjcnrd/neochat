@@ -6,4 +6,4 @@ Neochat is a fullstack application using the MERN stack. The real time messaging
 
 ### Preview 
 
-[!Screenshot](https://github.com/rjcnrd/lmatfy/blob/master/client/src/images/screenshot.png)
+![Screenshot](https://github.com/rjcnrd/lmatfy/blob/master/client/src/images/screenshot.png)

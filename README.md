@@ -2,7 +2,7 @@
 
 [Link to the project](http://www.neochat.co/)
 
-Neochat is a real time messaging app that allows you to chat with your friends in a fun and casual way: by adding the right gif to each message you send. 
+Neochat is a real time messaging app that allows you to chat with your friends in a fun and casual way: by adding a gif to each message you send. I created Neochat during a 9 week bootcamp in javascript @Ironhack and worked 8 days on the creation of the app. 
 
 ### Stack
 
